@@ -49,6 +49,7 @@ target/
 # Forge MDK
 forge*changelog.txt
 run/
+run-data/
 logs/
 saves/
 crash-reports/
@@ -86,3 +87,6 @@ desktop.ini
 
 # Generated sources
 src/generated/
+
+# Local Maven repository (for testing)
+mcmodsrepo/

@@ -79,8 +79,8 @@ public class HeadphoneItem extends ArmorItem {
      * 耳机是头盔类型，固定返回 HEAD 槽位
      * 
      * 注意：在创造模式下右键穿戴后，物品栏里还会保留一份副本，
-     * 这不是我们的bug，是创造模式本身的机制（创造模式下不消耗物品）。
-     * 生存模式下行为完全正常，所以别再纠结这个问题了。
+     * 这不是bug，是创造模式本身的机制（创造模式下不消耗物品）。
+     * 生存模式下行为完全正常，我看了半天，别再纠结这个问题了（本质萌新菜鸟）。
      */
     @Override
     public EquipmentSlot getEquipmentSlot() {
