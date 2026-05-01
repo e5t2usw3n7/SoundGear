@@ -1,0 +1,7 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "soundgear:item/headphones",
+    "layer1": "soundgear:item/headphones_overlay"
+  }
+}
