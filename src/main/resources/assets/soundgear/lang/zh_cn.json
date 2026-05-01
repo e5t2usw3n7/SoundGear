@@ -1,6 +1,21 @@
 {
   "itemGroup.soundgear": "SoundGear",
-  "item.soundgear.headphones": "耳机",
+  "item.soundgear.white_headphones": "白色耳机",
+  "item.soundgear.orange_headphones": "橙色耳机",
+  "item.soundgear.magenta_headphones": "品红色耳机",
+  "item.soundgear.light_blue_headphones": "淡蓝色耳机",
+  "item.soundgear.yellow_headphones": "黄色耳机",
+  "item.soundgear.lime_headphones": "黄绿色耳机",
+  "item.soundgear.pink_headphones": "粉红色耳机",
+  "item.soundgear.gray_headphones": "灰色耳机",
+  "item.soundgear.light_gray_headphones": "淡灰色耳机",
+  "item.soundgear.cyan_headphones": "青色耳机",
+  "item.soundgear.purple_headphones": "紫色耳机",
+  "item.soundgear.blue_headphones": "蓝色耳机",
+  "item.soundgear.brown_headphones": "棕色耳机",
+  "item.soundgear.green_headphones": "绿色耳机",
+  "item.soundgear.red_headphones": "红色耳机",
+  "item.soundgear.black_headphones": "黑色耳机",
   "key.categories.soundgear": "SoundGear",
   "key.soundgear.voice_talk": "语音通话 (按住说话)"
 }

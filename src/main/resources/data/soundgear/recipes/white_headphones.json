@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "group": "headphones",
+  "pattern": [
+    "ILI",
+    "L L",
+    "I I"
+  ],
+  "key": {
+    "I": {"item": "minecraft:iron_ingot"},
+    "L": {"item": "minecraft:leather"}
+  },
+  "result": {
+    "item": "soundgear:white_headphones"
+  }
+}

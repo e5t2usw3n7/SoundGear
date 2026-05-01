@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "group": "headphones",
+  "ingredients": [
+    {"item": "soundgear:white_headphones"},
+    {"item": "minecraft:yellow_dye"}
+  ],
+  "result": {"item": "soundgear:yellow_headphones"}
+}

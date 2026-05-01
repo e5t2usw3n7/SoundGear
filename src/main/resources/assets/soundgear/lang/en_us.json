@@ -1,6 +1,21 @@
 {
   "itemGroup.soundgear": "SoundGear",
-  "item.soundgear.headphones": "Headphones",
+  "item.soundgear.white_headphones": "White Headphones",
+  "item.soundgear.orange_headphones": "Orange Headphones",
+  "item.soundgear.magenta_headphones": "Magenta Headphones",
+  "item.soundgear.light_blue_headphones": "Light Blue Headphones",
+  "item.soundgear.yellow_headphones": "Yellow Headphones",
+  "item.soundgear.lime_headphones": "Lime Headphones",
+  "item.soundgear.pink_headphones": "Pink Headphones",
+  "item.soundgear.gray_headphones": "Gray Headphones",
+  "item.soundgear.light_gray_headphones": "Light Gray Headphones",
+  "item.soundgear.cyan_headphones": "Cyan Headphones",
+  "item.soundgear.purple_headphones": "Purple Headphones",
+  "item.soundgear.blue_headphones": "Blue Headphones",
+  "item.soundgear.brown_headphones": "Brown Headphones",
+  "item.soundgear.green_headphones": "Green Headphones",
+  "item.soundgear.red_headphones": "Red Headphones",
+  "item.soundgear.black_headphones": "Black Headphones",
   "key.categories.soundgear": "SoundGear",
   "key.soundgear.voice_talk": "Voice Chat (Push to Talk)"
 }
