@@ -45,6 +45,67 @@
 ./gradlew build
 ```
 
+### 项目结构
+
+```
+SoundGear/
+├── headphone_mod/                   # 🎨 Blockbench 模型源文件
+│   ├── headphone.bbmodel            #   Blockbench 项目文件，用于 3D 模型编辑
+│   ├── headphone.java               #   导出 Java 模型模板
+│   └── headphone_texture.png        #   模型纹理贴图
+│
+├── src/main/
+│   ├── java/com/E5trusw3nt/mymod/  # 🧩 Java 源代码
+│   │   ├── SoundGearMod.java        # 🎯 模组主入口 - Forge 启动入口，注册物品/事件/网络/配置
+│   │   ├── Config.java              # ⚙️ 配置管理 - 基于 ForgeConfigSpec 的可热重载配置
+│   │   │
+│   │   ├── item/                    # 📦 物品系统
+│   │   │   ├── ModItems.java        #   物品注册中心 - 16 种颜色耳机均在此注册
+│   │   │   ├── HeadphoneItem.java   #   耳机物品类 - 继承 ArmorItem，支持颜色频道匹配
+│   │   │   └── ModArmorMaterials.java  #   护甲材质 - 定义耳机的耐久、防御、附魔等属性
+│   │   │
+│   │   ├── client/                  # 🎨 客户端渲染
+│   │   │   ├── HeadphoneModel.java  #   3D 耳机模型 - 基于 Blockbench 导出的模型定义
+│   │   │   └── HeadphoneArmorRenderer.java  # 自定义渲染器 - 取代默认平面盔甲纹理
+│   │   │
+│   │   └── voice/                   # 🔊 语音聊天系统
+│   │       ├── KeyBindings.java     #   L 键 PTT 绑定 - 按下开始/松开停止
+│   │       ├── VoiceChatNetwork.java  #   网络通道 - 基于 Forge SimpleChannel 的通信层
+│   │       ├── VoiceChatClientHandler.java  # 客户端处理 - 麦克风录音、音频播放、静音检测
+│   │       ├── VoiceChatServerHandler.java  # 服务端处理 - 按耳机颜色频道转发语音
+│   │       ├── VoiceDataPacket.java #   语音数据包 - 传输 PCM 音频及发送者频道信息
+│   │       └── VoiceStatusPacket.java  #   语音状态包 - 同步开始/停止/加入/离开等状态
+│   │
+│   └── resources/                   # 📦 资源文件
+│       ├── pack.mcmeta              #   资源包元数据
+│       ├── META-INF/
+│       │   └── mods.toml            #   模组元数据
+│       └── assets/soundgear/
+│           ├── lang/                # 🌐 本地化语言文件
+│           │   ├── en_us.json       #   英文语言文件
+│           │   └── zh_cn.json       #   中文语言文件
+│           │
+│           ├── models/item/         # 🏗️ 物品模型 JSON（16 色耳机）
+│           │   ├── headphones.json  #   白色耳机（基础模型）
+│           │   ├── white_headphones.json
+│           │   ├── ...
+│           │   └── black_headphones.json
+│           │
+│           ├── textures/item/       # 🖼️ 物品纹理
+│           │   ├── headphones.png          #   白色耳机纹理
+│           │   ├── headphones_overlay.png  #   合成覆盖层纹理
+│           │   └── ...（16 色耳机纹理同名 png）
+│           │
+│           └── textures/models/armor/  # 🛡️ 盔甲渲染纹理
+│               ├── headphones_layer_1.png         #   默认耳机盔甲层
+│               └── white_headphones_layer_1.png   #   白色耳机盔甲层
+│
+└── data/soundgear/recipes/          # 🔧 合成配方（16 色）
+    ├── white_headphones.json        #   白色耳机配方
+    ├── orange_headphones.json       #   橙色耳机配方
+    └── ...（其余 14 色耳机配方）
+```
+
 ## 更新日志
 
 详见 [CHANGELOG.md](CHANGELOG.md)

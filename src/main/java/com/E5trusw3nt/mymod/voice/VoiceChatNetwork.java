@@ -41,9 +41,10 @@ public class VoiceChatNetwork {
      * 3. 版本号比较方法（客户端用）
      * 4. 版本号比较方法（服务端用）
      * 
-     * AI说这个 ResourceLocation 构造函数已经弃用了，但 1.20.1 版本还没移除
-     * 以后升级版本的话可能要改成 ResourceLocation.fromNamespaceAndPath()
+     * ResourceLocation(String, String) 构造函数在 1.20.1 中被标记为 deprecated(forRemoval=true)
+     * 这个地方报了个warning，AI 说这个是在之后的版本被弃用了，但目前还没有替代方案，所以暂时先 suppress 了这个 warning
      */
+    @SuppressWarnings("removal")
     public static final SimpleChannel CHANNEL = NetworkRegistry.newSimpleChannel(
             new ResourceLocation(SoundGearMod.MODID, "voice_chat"),
             () -> PROTOCOL_VERSION,
@@ -64,7 +65,7 @@ public class VoiceChatNetwork {
      * 
      * 注册顺序很重要！客户端和服务端的注册顺序必须一致
      * 不然会出现 "收到数据包但不知道怎么解码" 的错误
-     * （别问我怎么知道的，调试了好久才发现是顺序问题……）
+     * （调试了好久才发现是顺序问题……）
      */
     public static void register() {
         // 注册语音数据包（客户端 -> 服务端）

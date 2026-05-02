@@ -1,15 +1,19 @@
 package com.E5trusw3nt.mymod.item;
 
+import com.E5trusw3nt.mymod.client.HeadphoneArmorRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
+import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.client.extensions.common.IClientItemExtensions;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * 耳机物品类
@@ -29,13 +33,27 @@ public class HeadphoneItem extends ArmorItem {
     private final int color;
 
     /**
-     * 构造函数
+     * 构造函数（通用耳机）
+     * 使用默认的 HEADPHONES 材质（纹理: headphones_layer_1.png）
      * 
      * @param color 该耳机颜色的RGB值（0xRRGGBB格式）
      * @param properties 物品属性
      */
     public HeadphoneItem(int color, Item.Properties properties) {
-        super(ModArmorMaterials.HEADPHONES, ArmorItem.Type.HELMET, properties);
+        this(ModArmorMaterials.HEADPHONES, color, properties);
+    }
+
+    /**
+     * 构造函数（指定材质）
+     * 允许使用不同的 ArmorMaterial 来切换盔甲纹理
+     * 例如白色耳机使用 WHITE_HEADPHONES → white_headphones_layer_1.png
+     * 
+     * @param material 护甲材质（决定纹理路径）
+     * @param color 该耳机颜色的RGB值（0xRRGGBB格式）
+     * @param properties 物品属性
+     */
+    public HeadphoneItem(ArmorMaterial material, int color, Item.Properties properties) {
+        super(material, ArmorItem.Type.HELMET, properties);
         this.color = color;
     }
 
@@ -85,6 +103,16 @@ public class HeadphoneItem extends ArmorItem {
     @Override
     public EquipmentSlot getEquipmentSlot() {
         return EquipmentSlot.HEAD;
+    }
+
+    /**
+     * 初始化客户端扩展
+     * 这里注册我们的自定义盔甲渲染器，让耳机使用3D模型渲染
+     * 而不是默认的平面盔甲纹理（那个紫黑格子）
+     */
+    @Override
+    public void initializeClient(Consumer<IClientItemExtensions> consumer) {
+        consumer.accept(HeadphoneArmorRenderer.INSTANCE);
     }
 
     /**

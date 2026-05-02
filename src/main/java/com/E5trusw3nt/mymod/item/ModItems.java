@@ -38,7 +38,8 @@ public class ModItems {
      */
     @SuppressWarnings("null")
     public static final RegistryObject<Item> WHITE_HEADPHONES = ITEMS.register("white_headphones",
-            () -> new HeadphoneItem(0xF9FFFE, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+            () -> new HeadphoneItem(ModArmorMaterials.WHITE_HEADPHONES, 0xF9FFFE,
+                    new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     
     @SuppressWarnings("null")
     public static final RegistryObject<Item> ORANGE_HEADPHONES = ITEMS.register("orange_headphones",
@@ -103,6 +104,7 @@ public class ModItems {
     /**
      * 所有耳机物品的列表，方便遍历
      */
+    @SuppressWarnings("unchecked")
     public static final RegistryObject<Item>[] ALL_HEADPHONES = new RegistryObject[]{
         WHITE_HEADPHONES, ORANGE_HEADPHONES, MAGENTA_HEADPHONES, LIGHT_BLUE_HEADPHONES,
         YELLOW_HEADPHONES, LIME_HEADPHONES, PINK_HEADPHONES, GRAY_HEADPHONES,

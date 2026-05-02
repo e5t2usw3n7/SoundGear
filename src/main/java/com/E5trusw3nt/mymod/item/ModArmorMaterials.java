@@ -3,10 +3,10 @@ package com.E5trusw3nt.mymod.item;
 import com.E5trusw3nt.mymod.SoundGearMod;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.function.Supplier;
@@ -46,7 +46,16 @@ public enum ModArmorMaterials implements ArmorMaterial {
      * 8. repairIngredient: Ingredient.EMPTY - 修复材料（空的表示不能修复）
      */
     HEADPHONES(SoundGearMod.MODID + ":headphones", 5, new int[]{0, 0, 0, 1}, 25,
-            SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.EMPTY);
+            SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(Items.IRON_INGOT)),
+
+    /**
+     * 白色耳机专用材质
+     * 使用 headphone_mod 文件夹中的新建模纹理
+     * 纹理路径由名称决定：soundgear:white_headphones → white_headphones_layer_1.png
+     * 属性与 HEADPHONES 完全一致，仅材质名称不同以路由到不同纹理
+     */
+    WHITE_HEADPHONES(SoundGearMod.MODID + ":white_headphones", 5, new int[]{0, 0, 0, 1}, 25,
+            SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(Items.IRON_INGOT));
 
     /**
      * 各槽位的基础耐久值
@@ -78,7 +87,7 @@ public enum ModArmorMaterials implements ArmorMaterial {
     private final float knockbackResistance;
 
     /** 修复材料（懒加载，只在需要时才计算） */
-    private final LazyLoadedValue<Ingredient> repairIngredient;
+    private final Supplier<Ingredient> repairIngredient;
 
     /**
      * 构造函数
@@ -94,7 +103,7 @@ public enum ModArmorMaterials implements ArmorMaterial {
         this.sound = sound;
         this.toughness = toughness;
         this.knockbackResistance = knockbackResistance;
-        this.repairIngredient = new LazyLoadedValue<>(repairIngredient);
+        this.repairIngredient = repairIngredient;
     }
 
     /**
@@ -153,7 +162,7 @@ public enum ModArmorMaterials implements ArmorMaterial {
      */
     @Override
     public Ingredient getRepairIngredient() {
-        return this.repairIngredient.get();
+        return this.repairIngredient.get(); // LazyLoadedValue 已弃用，改用 Supplier
     }
 
     /**

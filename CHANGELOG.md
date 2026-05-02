@@ -5,6 +5,26 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [1.3.0] - 2026-05-03
+
+### 新增
+
+- **白色耳机专属 3D 盔甲模型**：为白色耳机添加了独立的 Blockbench 高精度建模 (`headphone.bbmodel`)，穿戴后以立体 3D 模型展示，而非其他颜色的 2D 扁平纹理
+- **白色耳机专用护甲材质**：新增 `WHITE_HEADPHONES` 护甲材质，自动路由到独立的 `white_headphones_layer_1.png` 纹理
+
+### 变更
+
+- **HeadphoneModel.java**：重写 `renderToBuffer()`，在渲染标准人体部件后额外渲染自定义 `headphone` 模型部件，并同步头部旋转，使 3D 模型可以正确显示
+- **HeadphoneItem.java**：新增接受 `ArmorMaterial` 参数的重载构造函数，白色耳机使用 `WHITE_HEADPHONES` 材质
+- **ModItems.java**：白色耳机注册使用独立的 `WHITE_HEADPHONES` 材质
+- **清理旧文件**：删除了不再使用的 `headphones.json`、`headphones.png`、`headphones_overlay.png`（属于 1.2.0 移除的旧单一耳机物品的残留）
+
+### 修复
+
+- **修复 3D 模型不可见问题**：之前的 `HeadphoneModel.renderToBuffer()` 继承自 `HumanoidModel`，不渲染自定义 `headphone` 部件，导致 Blockbench 导出模型始终不可见
+
+---
+
 ## [1.2.0] - 2026-05-02
 
 ### 设计理念变更

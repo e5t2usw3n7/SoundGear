@@ -3,13 +3,14 @@
   "category": "equipment",
   "group": "headphones",
   "pattern": [
-    "ILI",
-    "L L",
+    "IRI",
+    "S S",
     "I I"
   ],
   "key": {
     "I": {"item": "minecraft:iron_ingot"},
-    "L": {"item": "minecraft:leather"}
+    "R": {"item": "minecraft:redstone"},
+    "S": {"item": "minecraft:string"}
   },
   "result": {
     "item": "soundgear:white_headphones"

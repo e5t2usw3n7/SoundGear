@@ -1,5 +1,6 @@
 package com.E5trusw3nt.mymod;
 
+import com.E5trusw3nt.mymod.client.HeadphoneModel;
 import com.E5trusw3nt.mymod.item.ModItems;
 import com.E5trusw3nt.mymod.voice.KeyBindings;
 import com.E5trusw3nt.mymod.voice.VoiceChatClientHandler;
@@ -8,6 +9,7 @@ import com.E5trusw3nt.mymod.voice.VoiceChatServerHandler;
 import com.mojang.logging.LogUtils;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -153,6 +155,15 @@ public class SoundGearMod {
         @SubscribeEvent
         public static void onRegisterKeyMappings(RegisterKeyMappingsEvent event) {
             KeyBindings.register(event);
+        }
+
+        /**
+         * 注册模型层定义
+         * 这样我们的 HeadphoneModel 才能在运行时被正确加载和使用
+         */
+        @SubscribeEvent
+        public static void onRegisterLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
+            event.registerLayerDefinition(HeadphoneModel.LAYER_LOCATION, HeadphoneModel::createBodyLayer);
         }
     }
 }
