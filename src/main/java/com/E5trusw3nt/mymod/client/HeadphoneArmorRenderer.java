@@ -34,6 +34,13 @@ public class HeadphoneArmorRenderer implements IClientItemExtensions {
         if (model == null) {
             model = new HeadphoneModel(getBakedModel());
         }
+        // 复制头部旋转数据：让耳机模型随人物转头而旋转
+        // 原版盔甲渲染层已经对 original 模型调用了 setupAnim，
+        // 我们需要将头部旋转复制到我们的自定义模型上
+        model.head.xRot = original.head.xRot;
+        model.head.yRot = original.head.yRot;
+        model.head.zRot = original.head.zRot;
+        model.young = original.young;
         return model;
     }
 

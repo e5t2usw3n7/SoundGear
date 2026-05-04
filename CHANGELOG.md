@@ -5,6 +5,14 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [1.3.2] - 2026-05-04
+
+### 修复
+
+- **修复耳机模型不随人物转头旋转**：在 `HeadphoneArmorRenderer.getGenericArmorModel()` 中，返回耳机模型前从原始模型复制头部旋转数据 (`head.xRot/yRot/zRot`)，使耳机 3D 模型能正确跟随玩家视野方向旋转
+
+---
+
 ## [1.3.1] - 2026-05-04
 
 ### 变更
