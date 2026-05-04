@@ -5,6 +5,20 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [1.3.1] - 2026-05-04
+
+### 变更
+
+- **统一所有耳机使用 3D 模型**：删除 `WhiteHeadphoneModel`，所有 16 种颜色的耳机统一使用 `HeadphoneModel`（基于 `headphone_mod/headphone.bbmodel` 的高精度 Blockbench 建模），穿戴时以立体 3D 耳机模型展示
+- **`HeadphoneModel.java` 重构**：将模型重写为继承 `HumanoidModel<LivingEntity>`，所有耳机几何体作为 `head` 部件的子部件，确保佩戴位置合理且随头部自然旋转，其他身体部件均为空占位
+- **`HeadphoneArmorRenderer.java`**：所有颜色耳机均使用 `HeadphoneModel`，不再区分白色耳机与其他颜色
+
+### 移除
+
+- 移除 `WhiteHeadphoneModel.java` 类及其相关引用
+
+---
+
 ## [1.3.0] - 2026-05-03
 
 ### 新增

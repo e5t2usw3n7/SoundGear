@@ -5,6 +5,7 @@
 ## 功能特性
 
 - **16 种颜色耳机**：白色、橙色、品红、淡蓝、黄绿、粉红、灰色、淡灰、青色、紫色、蓝色、棕色、绿色、红色、黑色
+- **3D 立体模型**：所有耳机均使用 Blockbench 高精度建模，穿戴时以立体 3D 模型展示于头部
 - **语音频道系统**：按住 `L` 键进行 Push-to-Talk 语音通话，穿戴相同颜色耳机的玩家可互相听到语音
 - **音符粒子效果**：语音激活时在玩家头顶显示音符粒子
 - **护甲功能**：耳机可放置在头部装备栏，提供 0.5 护甲值，支持附魔
@@ -65,8 +66,8 @@ SoundGear/
 │   │   │   └── ModArmorMaterials.java  #   护甲材质 - 定义耳机的耐久、防御、附魔等属性
 │   │   │
 │   │   ├── client/                  # 🎨 客户端渲染
-│   │   │   ├── HeadphoneModel.java  #   3D 耳机模型 - 基于 Blockbench 导出的模型定义
-│   │   │   └── HeadphoneArmorRenderer.java  # 自定义渲染器 - 取代默认平面盔甲纹理
+│   │   │   ├── HeadphoneModel.java  #   3D 耳机模型（HumanoidModel<LivingEntity>）- 基于 Blockbench 导出的高精度建模
+│   │   │   └── HeadphoneArmorRenderer.java  # 自定义盔甲渲染器 - 所有颜色统一使用 HeadphoneModel 渲染
 │   │   │
 │   │   └── voice/                   # 🔊 语音聊天系统
 │   │       ├── KeyBindings.java     #   L 键 PTT 绑定 - 按下开始/松开停止
@@ -85,25 +86,26 @@ SoundGear/
 │           │   ├── en_us.json       #   英文语言文件
 │           │   └── zh_cn.json       #   中文语言文件
 │           │
-│           ├── models/item/         # 🏗️ 物品模型 JSON（16 色耳机）
-│           │   ├── headphones.json  #   白色耳机（基础模型）
+│           ├── models/item/         # 🏗️ 物品模型 JSON（每色一个，共 16 个）
 │           │   ├── white_headphones.json
-│           │   ├── ...
-│           │   └── black_headphones.json
+│           │   ├── orange_headphones.json
+│           │   └── ...（其余 14 色耳机模型）
 │           │
-│           ├── textures/item/       # 🖼️ 物品纹理
-│           │   ├── headphones.png          #   白色耳机纹理
-│           │   ├── headphones_overlay.png  #   合成覆盖层纹理
-│           │   └── ...（16 色耳机纹理同名 png）
+│           ├── textures/item/       # 🖼️ 物品纹理（每色一个，共 16 张）
+│           │   ├── white_headphones.png
+│           │   ├── orange_headphones.png
+│           │   └── ...（其余 14 色耳机纹理）
 │           │
 │           └── textures/models/armor/  # 🛡️ 盔甲渲染纹理
-│               ├── headphones_layer_1.png         #   默认耳机盔甲层
-│               └── white_headphones_layer_1.png   #   白色耳机盔甲层
+│               ├── headphones_layer_1.png         #   默认耳机盔甲纹理
+│               └── white_headphones_layer_1.png   #   白色耳机盔甲纹理
 │
-└── data/soundgear/recipes/          # 🔧 合成配方（16 色）
-    ├── white_headphones.json        #   白色耳机配方
-    ├── orange_headphones.json       #   橙色耳机配方
-    └── ...（其余 14 色耳机配方）
+├── data/soundgear/recipes/          # 🔧 合成配方（每色一个，共 16 个）
+│   ├── white_headphones.json        #   白色耳机配方
+│   ├── orange_headphones.json       #   橙色耳机配方
+│   └── ...（其余 14 色耳机配方）
+└── generated/resources/             # ⚡ 数据生成器输出
+    └── assets/soundgear/            #   自动生成的模型/纹理（如需）
 ```
 
 ## 更新日志

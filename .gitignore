@@ -90,3 +90,9 @@ src/generated/
 
 # Local Maven repository (for testing)
 mcmodsrepo/
+
+# Blockbench model source files (not needed in the mod JAR)
+headphone_mod/
+
+# Build output logs
+build_output.txt
