@@ -96,9 +96,23 @@ SoundGear/
 │           │   ├── orange_headphones.png
 │           │   └── ...（其余 14 色耳机纹理）
 │           │
-│           └── textures/models/armor/  # 🛡️ 盔甲渲染纹理
-│               ├── headphones_layer_1.png         #   默认耳机盔甲纹理
-│               └── white_headphones_layer_1.png   #   白色耳机盔甲纹理
+│           └── textures/models/armor/  # 🛡️ 16 色独立盔甲渲染纹理
+│               ├── white_headphones_layer_1.png   #   白色
+│               ├── orange_headphones_layer_1.png  #   橙色
+│               ├── magenta_headphones_layer_1.png #   品红色
+│               ├── light_blue_headphones_layer_1.png  # 淡蓝色
+│               ├── yellow_headphones_layer_1.png #   黄色
+│               ├── lime_headphones_layer_1.png   #   黄绿色
+│               ├── pink_headphones_layer_1.png   #   粉红色
+│               ├── gray_headphones_layer_1.png   #   灰色
+│               ├── light_gray_headphones_layer_1.png # 淡灰色
+│               ├── cyan_headphones_layer_1.png   #   青色
+│               ├── purple_headphones_layer_1.png #   紫色
+│               ├── blue_headphones_layer_1.png   #   蓝色
+│               ├── brown_headphones_layer_1.png  #   棕色
+│               ├── green_headphones_layer_1.png  #   绿色
+│               ├── red_headphones_layer_1.png    #   红色
+│               └── black_headphones_layer_1.png  #   黑色
 │
 ├── data/soundgear/recipes/          # 🔧 合成配方（每色一个，共 16 个）
 │   ├── white_headphones.json        #   白色耳机配方

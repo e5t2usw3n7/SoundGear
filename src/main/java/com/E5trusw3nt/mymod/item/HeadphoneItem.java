@@ -33,20 +33,12 @@ public class HeadphoneItem extends ArmorItem {
     private final int color;
 
     /**
-     * 构造函数（通用耳机）
-     * 使用默认的 HEADPHONES 材质（纹理: headphones_layer_1.png）
-     * 
-     * @param color 该耳机颜色的RGB值（0xRRGGBB格式）
-     * @param properties 物品属性
-     */
-    public HeadphoneItem(int color, Item.Properties properties) {
-        this(ModArmorMaterials.HEADPHONES, color, properties);
-    }
-
-    /**
      * 构造函数（指定材质）
      * 允许使用不同的 ArmorMaterial 来切换盔甲纹理
-     * 例如白色耳机使用 WHITE_HEADPHONES → white_headphones_layer_1.png
+     * 每种颜色的耳机都使用自己专属的材质，纹理路径由材质名称决定
+     * 例如：white_headphones → white_headphones_layer_1.png
+     *       orange_headphones → orange_headphones_layer_1.png
+     *       以此类推……
      * 
      * @param material 护甲材质（决定纹理路径）
      * @param color 该耳机颜色的RGB值（0xRRGGBB格式）

@@ -30,31 +30,115 @@ import java.util.function.Supplier;
  */
 public enum ModArmorMaterials implements ArmorMaterial {
     /**
-     * 耳机材质
-     * 
-     * 参数详解：
-     * 1. name: "soundgear:headphones" - 材质名称，用于模型/纹理文件的查找
-     * 2. durabilityMultiplier: 5 - 耐久倍数，乘以各槽位的基础耐久值
-     * 3. slotProtections: {0, 0, 0, 1} - 各槽位防御值（头盔=1，其他=0）
-     *    这里只有最后一个位置（头盔，索引3）有值1，其他都是0
-     *    1点防御值 = 0.5个护甲图标（半个盔甲）
-     * 4. enchantmentValue: 25 - 附魔能力值，越高附魔台出的附魔越好
-     *    铁甲是25，钻石甲是33，金甲也是25
-     * 5. sound: 皮革装备音效 - 穿戴时发出的声音
-     * 6. toughness: 0.0F - 韧性（减少穿甲伤害，钻石甲有这个）
-     * 7. knockbackResistance: 0.0F - 击退抗性（下界合金甲有这个）
-     * 8. repairIngredient: Ingredient.EMPTY - 修复材料（空的表示不能修复）
+     * 白色耳机专用材质
+     * 纹理：white_headphones_layer_1.png
      */
-    HEADPHONES(SoundGearMod.MODID + ":headphones", 5, new int[]{0, 0, 0, 1}, 25,
+    WHITE_HEADPHONES(SoundGearMod.MODID + ":white_headphones", 5, new int[]{0, 0, 0, 1}, 25,
             SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(Items.IRON_INGOT)),
 
     /**
-     * 白色耳机专用材质
-     * 使用 headphone_mod 文件夹中的新建模纹理
-     * 纹理路径由名称决定：soundgear:white_headphones → white_headphones_layer_1.png
-     * 属性与 HEADPHONES 完全一致，仅材质名称不同以路由到不同纹理
+     * 橙色耳机专用材质
+     * 纹理：orange_headphones_layer_1.png
      */
-    WHITE_HEADPHONES(SoundGearMod.MODID + ":white_headphones", 5, new int[]{0, 0, 0, 1}, 25,
+    ORANGE_HEADPHONES(SoundGearMod.MODID + ":orange_headphones", 5, new int[]{0, 0, 0, 1}, 25,
+            SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(Items.IRON_INGOT)),
+
+    /**
+     * 品红色耳机专用材质
+     * 纹理：magenta_headphones_layer_1.png
+     */
+    MAGENTA_HEADPHONES(SoundGearMod.MODID + ":magenta_headphones", 5, new int[]{0, 0, 0, 1}, 25,
+            SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(Items.IRON_INGOT)),
+
+    /**
+     * 淡蓝色耳机专用材质
+     * 纹理：light_blue_headphones_layer_1.png
+     */
+    LIGHT_BLUE_HEADPHONES(SoundGearMod.MODID + ":light_blue_headphones", 5, new int[]{0, 0, 0, 1}, 25,
+            SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(Items.IRON_INGOT)),
+
+    /**
+     * 黄色耳机专用材质
+     * 纹理：yellow_headphones_layer_1.png
+     */
+    YELLOW_HEADPHONES(SoundGearMod.MODID + ":yellow_headphones", 5, new int[]{0, 0, 0, 1}, 25,
+            SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(Items.IRON_INGOT)),
+
+    /**
+     * 黄绿色耳机专用材质
+     * 纹理：lime_headphones_layer_1.png
+     */
+    LIME_HEADPHONES(SoundGearMod.MODID + ":lime_headphones", 5, new int[]{0, 0, 0, 1}, 25,
+            SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(Items.IRON_INGOT)),
+
+    /**
+     * 粉红色耳机专用材质
+     * 纹理：pink_headphones_layer_1.png
+     */
+    PINK_HEADPHONES(SoundGearMod.MODID + ":pink_headphones", 5, new int[]{0, 0, 0, 1}, 25,
+            SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(Items.IRON_INGOT)),
+
+    /**
+     * 灰色耳机专用材质
+     * 纹理：gray_headphones_layer_1.png
+     */
+    GRAY_HEADPHONES(SoundGearMod.MODID + ":gray_headphones", 5, new int[]{0, 0, 0, 1}, 25,
+            SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(Items.IRON_INGOT)),
+
+    /**
+     * 淡灰色耳机专用材质
+     * 纹理：light_gray_headphones_layer_1.png
+     */
+    LIGHT_GRAY_HEADPHONES(SoundGearMod.MODID + ":light_gray_headphones", 5, new int[]{0, 0, 0, 1}, 25,
+            SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(Items.IRON_INGOT)),
+
+    /**
+     * 青色耳机专用材质
+     * 纹理：cyan_headphones_layer_1.png
+     */
+    CYAN_HEADPHONES(SoundGearMod.MODID + ":cyan_headphones", 5, new int[]{0, 0, 0, 1}, 25,
+            SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(Items.IRON_INGOT)),
+
+    /**
+     * 紫色耳机专用材质
+     * 纹理：purple_headphones_layer_1.png
+     */
+    PURPLE_HEADPHONES(SoundGearMod.MODID + ":purple_headphones", 5, new int[]{0, 0, 0, 1}, 25,
+            SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(Items.IRON_INGOT)),
+
+    /**
+     * 蓝色耳机专用材质
+     * 纹理：blue_headphones_layer_1.png
+     */
+    BLUE_HEADPHONES(SoundGearMod.MODID + ":blue_headphones", 5, new int[]{0, 0, 0, 1}, 25,
+            SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(Items.IRON_INGOT)),
+
+    /**
+     * 棕色耳机专用材质
+     * 纹理：brown_headphones_layer_1.png
+     */
+    BROWN_HEADPHONES(SoundGearMod.MODID + ":brown_headphones", 5, new int[]{0, 0, 0, 1}, 25,
+            SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(Items.IRON_INGOT)),
+
+    /**
+     * 绿色耳机专用材质
+     * 纹理：green_headphones_layer_1.png
+     */
+    GREEN_HEADPHONES(SoundGearMod.MODID + ":green_headphones", 5, new int[]{0, 0, 0, 1}, 25,
+            SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(Items.IRON_INGOT)),
+
+    /**
+     * 红色耳机专用材质
+     * 纹理：red_headphones_layer_1.png
+     */
+    RED_HEADPHONES(SoundGearMod.MODID + ":red_headphones", 5, new int[]{0, 0, 0, 1}, 25,
+            SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(Items.IRON_INGOT)),
+
+    /**
+     * 黑色耳机专用材质
+     * 纹理：black_headphones_layer_1.png
+     */
+    BLACK_HEADPHONES(SoundGearMod.MODID + ":black_headphones", 5, new int[]{0, 0, 0, 1}, 25,
             SoundEvents.ARMOR_EQUIP_LEATHER, 0.0F, 0.0F, () -> Ingredient.of(Items.IRON_INGOT));
 
     /**

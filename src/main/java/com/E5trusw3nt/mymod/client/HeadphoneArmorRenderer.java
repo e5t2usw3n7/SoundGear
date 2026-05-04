@@ -15,8 +15,9 @@ import javax.annotation.Nullable;
  * 而不是使用默认的平面盔甲纹理（那个 texture_not_found 紫黑格子）
  *
  * 所有颜色的耳机统一使用 HeadphoneModel 模型（几何体和UV完全一致），
- * 纹理由各自的 ArmorMaterial 自动决定（white_headphones → white_headphones_layer_1.png，
- * headphones → headphones_layer_1.png）。
+ * 纹理由各自的 ArmorMaterial 自动决定
+ * white_headphones → white_headphones_layer_1.png
+ * headphones → headphones_layer_1.png
  */
 public class HeadphoneArmorRenderer implements IClientItemExtensions {
 

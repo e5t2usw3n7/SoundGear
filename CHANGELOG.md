@@ -5,13 +5,30 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
-## [1.3.2] - 2026-05-04
+## [1.3.3] - 2026-05-04
+
+### 新增
+
+- **16 色独立盔甲纹理**：每种颜色的耳机现在拥有独立的盔甲渲染纹理，基于 `headphone_mod/` 中的颜色贴图自动映射。白色 → `white_headphones_layer_1.png`，橙色 → `orange_headphones_layer_1.png`，以此类推。
+
+### 变更
+
+- **`ModArmorMaterials.java`**：移除旧的通用 `HEADPHONES` 材质，为 16 色各新增独立的 `ArmorMaterial`（如 `ORANGE_HEADPHONES`、`LIME_HEADPHONES` 等），每种材质名称与物品注册名一致，使 Minecraft 盔甲渲染系统自动路由到对应颜色的纹理
+- **`ModItems.java`**：所有 15 色耳机（橙色到黑色）改用专属材质构造函数，不再共用同一通用材质
+- **`HeadphoneItem.java`**：移除已废弃的 `HeadphoneItem(int color, Properties)` 通用构造函数，统一使用 `HeadphoneItem(ArmorMaterial, int, Properties)` 材质构造方式
 
 ### 修复
 
 - **修复耳机模型不随人物转头旋转**：在 `HeadphoneArmorRenderer.getGenericArmorModel()` 中，返回耳机模型前从原始模型复制头部旋转数据 (`head.xRot/yRot/zRot`)，使耳机 3D 模型能正确跟随玩家视野方向旋转
 
 ---
+
+## [1.3.2] - 2026-05-04
+
+### 修复
+
+- **修复耳机模型不随人物转头旋转**：在 `HeadphoneArmorRenderer.getGenericArmorModel()` 中，返回耳机模型前从原始模型复制头部旋转数据 (`head.xRot/yRot/zRot`)，使耳机 3D 模型能正确跟随玩家视野方向旋转
+
 
 ## [1.3.1] - 2026-05-04
 

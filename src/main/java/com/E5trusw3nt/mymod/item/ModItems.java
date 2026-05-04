@@ -43,63 +43,78 @@ public class ModItems {
     
     @SuppressWarnings("null")
     public static final RegistryObject<Item> ORANGE_HEADPHONES = ITEMS.register("orange_headphones",
-            () -> new HeadphoneItem(0xF9801D, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+            () -> new HeadphoneItem(ModArmorMaterials.ORANGE_HEADPHONES, 0xF9801D,
+                    new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     
     @SuppressWarnings("null")
     public static final RegistryObject<Item> MAGENTA_HEADPHONES = ITEMS.register("magenta_headphones",
-            () -> new HeadphoneItem(0xC74EBD, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+            () -> new HeadphoneItem(ModArmorMaterials.MAGENTA_HEADPHONES, 0xC74EBD,
+                    new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     
     @SuppressWarnings("null")
     public static final RegistryObject<Item> LIGHT_BLUE_HEADPHONES = ITEMS.register("light_blue_headphones",
-            () -> new HeadphoneItem(0x3AB3DA, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+            () -> new HeadphoneItem(ModArmorMaterials.LIGHT_BLUE_HEADPHONES, 0x3AB3DA,
+                    new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     
     @SuppressWarnings("null")
     public static final RegistryObject<Item> YELLOW_HEADPHONES = ITEMS.register("yellow_headphones",
-            () -> new HeadphoneItem(0xFED83D, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+            () -> new HeadphoneItem(ModArmorMaterials.YELLOW_HEADPHONES, 0xFED83D,
+                    new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     
     @SuppressWarnings("null")
     public static final RegistryObject<Item> LIME_HEADPHONES = ITEMS.register("lime_headphones",
-            () -> new HeadphoneItem(0x80C71F, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+            () -> new HeadphoneItem(ModArmorMaterials.LIME_HEADPHONES, 0x80C71F,
+                    new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     
     @SuppressWarnings("null")
     public static final RegistryObject<Item> PINK_HEADPHONES = ITEMS.register("pink_headphones",
-            () -> new HeadphoneItem(0xF38BAA, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+            () -> new HeadphoneItem(ModArmorMaterials.PINK_HEADPHONES, 0xF38BAA,
+                    new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     
     @SuppressWarnings("null")
     public static final RegistryObject<Item> GRAY_HEADPHONES = ITEMS.register("gray_headphones",
-            () -> new HeadphoneItem(0x474F52, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+            () -> new HeadphoneItem(ModArmorMaterials.GRAY_HEADPHONES, 0x474F52,
+                    new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     
     @SuppressWarnings("null")
     public static final RegistryObject<Item> LIGHT_GRAY_HEADPHONES = ITEMS.register("light_gray_headphones",
-            () -> new HeadphoneItem(0x9D9D97, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+            () -> new HeadphoneItem(ModArmorMaterials.LIGHT_GRAY_HEADPHONES, 0x9D9D97,
+                    new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     
     @SuppressWarnings("null")
     public static final RegistryObject<Item> CYAN_HEADPHONES = ITEMS.register("cyan_headphones",
-            () -> new HeadphoneItem(0x169C9C, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+            () -> new HeadphoneItem(ModArmorMaterials.CYAN_HEADPHONES, 0x169C9C,
+                    new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     
     @SuppressWarnings("null")
     public static final RegistryObject<Item> PURPLE_HEADPHONES = ITEMS.register("purple_headphones",
-            () -> new HeadphoneItem(0x8932B8, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+            () -> new HeadphoneItem(ModArmorMaterials.PURPLE_HEADPHONES, 0x8932B8,
+                    new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     
     @SuppressWarnings("null")
     public static final RegistryObject<Item> BLUE_HEADPHONES = ITEMS.register("blue_headphones",
-            () -> new HeadphoneItem(0x3C44AA, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+            () -> new HeadphoneItem(ModArmorMaterials.BLUE_HEADPHONES, 0x3C44AA,
+                    new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     
     @SuppressWarnings("null")
     public static final RegistryObject<Item> BROWN_HEADPHONES = ITEMS.register("brown_headphones",
-            () -> new HeadphoneItem(0x835432, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+            () -> new HeadphoneItem(ModArmorMaterials.BROWN_HEADPHONES, 0x835432,
+                    new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     
     @SuppressWarnings("null")
     public static final RegistryObject<Item> GREEN_HEADPHONES = ITEMS.register("green_headphones",
-            () -> new HeadphoneItem(0x5E7C16, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+            () -> new HeadphoneItem(ModArmorMaterials.GREEN_HEADPHONES, 0x5E7C16,
+                    new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     
     @SuppressWarnings("null")
     public static final RegistryObject<Item> RED_HEADPHONES = ITEMS.register("red_headphones",
-            () -> new HeadphoneItem(0xB02E26, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+            () -> new HeadphoneItem(ModArmorMaterials.RED_HEADPHONES, 0xB02E26,
+                    new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
     
     @SuppressWarnings("null")
     public static final RegistryObject<Item> BLACK_HEADPHONES = ITEMS.register("black_headphones",
-            () -> new HeadphoneItem(0x1D1D21, new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
+            () -> new HeadphoneItem(ModArmorMaterials.BLACK_HEADPHONES, 0x1D1D21,
+                    new Item.Properties().stacksTo(1).rarity(Rarity.UNCOMMON)));
 
     /**
      * 所有耳机物品的列表，方便遍历
