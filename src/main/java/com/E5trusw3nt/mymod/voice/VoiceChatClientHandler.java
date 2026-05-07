@@ -53,11 +53,17 @@ public class VoiceChatClientHandler {
     /** 是否正在传输语音（用AtomicBoolean保证线程安全） */
     private static final AtomicBoolean isTransmitting = new AtomicBoolean(false);
 
+    /** 是否正在进行环回测试（用AtomicBoolean保证线程安全） */
+    private static final AtomicBoolean isLoopbackTesting = new AtomicBoolean(false);
+
     /** 音频设备是否已初始化 */
     private static final AtomicBoolean isInitialized = new AtomicBoolean(false);
 
     /** 录音线程 */
     private static Thread captureThread;
+
+    /** 环回测试录音/播放线程 */
+    private static Thread loopbackThread;
 
     /** 播放线程 */
     private static Thread playbackThread;
@@ -344,12 +350,142 @@ public class VoiceChatClientHandler {
     }
 
     /**
+     * 开始环回测试（按下K键时调用）
+     * 
+     * 环回测试的原理很简单：从麦克风录音，然后直接从扬声器播放出来
+     * 不需要连接服务器，不需要佩戴耳机，纯粹测试音频设备是否正常
+     * 
+     * 流程：
+     * 1. 检查音频设备是否初始化
+     * 2. 更新状态为"正在测试"
+     * 3. 显示提示消息
+     * 4. 启动环回线程
+     */
+    public static void startLoopbackTest() {
+        if (!isInitialized.get()) {
+            if (!init()) {
+                Minecraft mc = Minecraft.getInstance();
+                if (mc.player != null) {
+                    mc.player.displayClientMessage(
+                            Component.literal("§c[SoundGear] §7无法初始化音频设备，请检查麦克风和扬声器"), true);
+                }
+                return;
+            }
+        }
+
+        if (isLoopbackTesting.compareAndSet(false, true)) {
+            LocalPlayer player = Minecraft.getInstance().player;
+            if (player != null) {
+                player.displayClientMessage(
+                        Component.literal("§e[SoundGear] §7环回测试中 - 对着麦克风说话，你应该能听到自己的声音..."), true);
+            }
+
+            // 启动环回线程
+            loopbackThread = new Thread(VoiceChatClientHandler::captureAndPlayLoopback, "SoundGear-Loopback");
+            loopbackThread.setDaemon(true);
+            loopbackThread.start();
+        }
+    }
+
+    /**
+     * 停止环回测试（松开K键时调用）
+     * 
+     * 流程：
+     * 1. 更新状态为"停止测试"
+     * 2. 显示提示消息
+     * 3. 关闭麦克风和扬声器
+     */
+    public static void stopLoopbackTest() {
+        if (isLoopbackTesting.compareAndSet(true, false)) {
+            LocalPlayer player = Minecraft.getInstance().player;
+            if (player != null) {
+                player.displayClientMessage(
+                        Component.literal("§7[SoundGear] §7环回测试已结束"), true);
+            }
+        }
+    }
+
+    /**
+     * 环回测试的核心逻辑：录音并立即播放
+     * 这个方法在独立线程里运行，循环执行直到 isLoopbackTesting 变为 false
+     * 
+     * 流程：
+     * 1. 打开麦克风并开始录音
+     * 2. 打开扬声器并开始播放
+     * 3. 循环：从麦克风读取音频 -> 直接写入扬声器
+     * 4. 测试结束后关闭设备
+     * 
+     * 为了不对正常的语音传输产生干扰，这里使用独立的设备实例
+     * （通过重新获取数据线来避免和语音传输冲突）
+     */
+    private static void captureAndPlayLoopback() {
+        TargetDataLine loopbackMic = null;
+        SourceDataLine loopbackSpeaker = null;
+        try {
+            // 使用独立的设备实例，避免和正常语音传输冲突
+            DataLine.Info micInfo = new DataLine.Info(TargetDataLine.class, AUDIO_FORMAT);
+            if (!AudioSystem.isLineSupported(micInfo)) {
+                Minecraft mc = Minecraft.getInstance();
+                if (mc.player != null) {
+                    mc.player.displayClientMessage(
+                            Component.literal("§c[SoundGear] §7麦克风不可用"), true);
+                }
+                return;
+            }
+            loopbackMic = (TargetDataLine) AudioSystem.getLine(micInfo);
+            loopbackMic.open(AUDIO_FORMAT);
+            loopbackMic.start();
+
+            DataLine.Info speakerInfo = new DataLine.Info(SourceDataLine.class, AUDIO_FORMAT);
+            if (!AudioSystem.isLineSupported(speakerInfo)) {
+                Minecraft mc = Minecraft.getInstance();
+                if (mc.player != null) {
+                    mc.player.displayClientMessage(
+                            Component.literal("§c[SoundGear] §7扬声器不可用"), true);
+                }
+                return;
+            }
+            loopbackSpeaker = (SourceDataLine) AudioSystem.getLine(speakerInfo);
+            loopbackSpeaker.open(AUDIO_FORMAT);
+            loopbackSpeaker.start();
+
+            byte[] buffer = new byte[BUFFER_SIZE];
+
+            while (isLoopbackTesting.get()) {
+                int bytesRead = loopbackMic.read(buffer, 0, buffer.length);
+                if (bytesRead > 0) {
+                    // 直接播放，不做静音检测（环回测试就是要听到一切声音，包括噪音）
+                    loopbackSpeaker.write(buffer, 0, bytesRead);
+                }
+            }
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+            Minecraft mc = Minecraft.getInstance();
+            if (mc.player != null) {
+                mc.player.displayClientMessage(
+                        Component.literal("§c[SoundGear] §7音频设备被占用，请关闭其他使用麦克风的程序"), true);
+            }
+        } finally {
+            // 关闭环回测试用的设备
+            if (loopbackMic != null && loopbackMic.isOpen()) {
+                loopbackMic.stop();
+                loopbackMic.close();
+            }
+            if (loopbackSpeaker != null && loopbackSpeaker.isOpen()) {
+                loopbackSpeaker.drain();
+                loopbackSpeaker.close();
+            }
+        }
+    }
+
+    /**
      * 清理资源
      * 在游戏关闭时调用，确保麦克风和扬声器被正确释放
      * 不然可能会出现麦克风被占用的问题（别问我怎么知道的）
      */
     public static void cleanup() {
         stopTransmitting();
+        stopLoopbackTest();
         if (speaker != null && speaker.isOpen()) {
             speaker.drain();
             speaker.close();

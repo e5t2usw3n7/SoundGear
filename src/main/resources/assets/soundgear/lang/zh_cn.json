@@ -17,5 +17,6 @@
   "item.soundgear.red_headphones": "红色耳机",
   "item.soundgear.black_headphones": "黑色耳机",
   "key.categories.soundgear": "SoundGear",
-  "key.soundgear.voice_talk": "语音通话 (按住说话)"
+  "key.soundgear.voice_talk": "语音通话 (按住说话)",
+  "key.soundgear.loopback_test": "环回测试 (按住测试麦克风)"
 }

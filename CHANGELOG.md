@@ -5,6 +5,20 @@
 格式基于 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.0.0/)，
 版本号遵循 [语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [1.3.4] - 2026-05-07
+
+### 新增
+
+- **语音环回测试**：新增 `K` 键（默认）环回测试功能，按住 K 键对着麦克风说话，可直接从扬声器听到自己的声音，用于验证麦克风和扬声器设备是否正常工作。不需要佩戴耳机，不依赖服务器连接。使用独立的音频设备实例，不会与正常语音传输冲突
+- **环回测试翻译**：中英文语言文件新增 `key.soundgear.loopback_test` 条目
+
+### 变更
+
+- **耳机Tooltip动态按键提示**：`HeadphoneItem` 的 tooltip 中语音按键提示从硬编码的 `"按L键"` 改为动态读取 `KeyBindings.VOICE_TALK.getTranslatedKeyMessage()`，玩家在按键设置中修改绑定后，tooltip 会自动显示正确的按键名称
+- **合成配方设计**：白色耳机使用铁锭+丝线+红石粉合成（有形状配方）
+
+---
+
 ## [1.3.3] - 2026-05-04
 
 ### 新增

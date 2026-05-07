@@ -54,11 +54,35 @@ public class KeyBindings {
     );
 
     /**
-     * 上一帧的按键状态
+     * 环回测试按键映射
+     * 默认绑定到 K 键（GLFW.GLFW_KEY_K）
+     * 
+     * 功能：按下后录音并立即从扬声器播放回来
+     * 用来验证麦克风和扬声器是否正常工作
+     * 不需要佩戴耳机，也不需要在服务器上
+     * 
+     * 按住K键说话，能在耳机/扬声器里听到自己的声音 = 设备正常
+     */
+    public static final KeyMapping LOOPBACK_TEST = new KeyMapping(
+            "key." + SoundGearMod.MODID + ".loopback_test",
+            KeyConflictContext.IN_GAME,
+            KeyModifier.NONE,
+            InputConstants.Type.KEYSYM,
+            GLFW.GLFW_KEY_K,
+            CATEGORY
+    );
+
+    /**
+     * 语音按键上一帧的状态
      * 用来检测按键状态的变化（按下/松开）
      * 如果只检查当前是否按下，会一直触发；我们需要的是"刚按下"和"刚松开"的瞬间
      */
     private static boolean wasPressed = false;
+
+    /**
+     * 环回测试按键上一帧的状态
+     */
+    private static boolean loopbackWasPressed = false;
 
     /**
      * 注册按键映射到 Minecraft
@@ -69,6 +93,7 @@ public class KeyBindings {
      */
     public static void register(RegisterKeyMappingsEvent event) {
         event.register(VOICE_TALK);
+        event.register(LOOPBACK_TEST);
     }
 
     /**
@@ -88,6 +113,7 @@ public class KeyBindings {
     public static void onClientTick(TickEvent.ClientTickEvent event) {
         if (event.phase != TickEvent.Phase.END) return;
 
+        // 语音通话按键检测
         boolean isPressed = VOICE_TALK.isDown();
         if (isPressed && !wasPressed) {
             // 按下：开始语音传输
@@ -97,5 +123,16 @@ public class KeyBindings {
             VoiceChatClientHandler.stopTransmitting();
         }
         wasPressed = isPressed;
+
+        // 环回测试按键检测
+        boolean loopbackPressed = LOOPBACK_TEST.isDown();
+        if (loopbackPressed && !loopbackWasPressed) {
+            // 按下：开始环回测试
+            VoiceChatClientHandler.startLoopbackTest();
+        } else if (!loopbackPressed && loopbackWasPressed) {
+            // 松开：停止环回测试
+            VoiceChatClientHandler.stopLoopbackTest();
+        }
+        loopbackWasPressed = loopbackPressed;
     }
 }

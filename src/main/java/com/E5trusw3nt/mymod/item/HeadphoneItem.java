@@ -10,6 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.client.extensions.common.IClientItemExtensions;
+import com.E5trusw3nt.mymod.voice.KeyBindings;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -109,6 +110,7 @@ public class HeadphoneItem extends ArmorItem {
 
     /**
      * 鼠标悬停时显示的额外信息（tooltip）
+     * 注意：这里动态获取按键绑定，如果玩家在设置里改了按键，tooltip也会跟着变
      */
     @Override
     public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
@@ -116,6 +118,8 @@ public class HeadphoneItem extends ArmorItem {
         int color = getHeadphoneColor(stack);
         String hexColor = String.format("#%06X", color & 0xFFFFFF);
         tooltip.add(Component.literal("§7颜色: " + hexColor));
-        tooltip.add(Component.literal("§7按 §eL §7键开启语音频道"));
+        // 动态获取当前绑定的按键名称
+        String keyName = KeyBindings.VOICE_TALK.getTranslatedKeyMessage().getString();
+        tooltip.add(Component.literal("§7按 §e" + keyName + " §7键开启语音频道"));
     }
 }
